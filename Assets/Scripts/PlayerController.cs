@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody rb;
     public float speed, forwardSpeed, tilt, distance;
-    private int money, score;
+    private int score;
     public static int highScore;
     private Quaternion calibrationQuaternion;
     public SimpleTouchPad touchPad;
@@ -33,12 +33,9 @@ public class PlayerController : MonoBehaviour
         distance = transform.position.z * 0.2f;
         score = Convert.ToInt32(distance);
         distanceText.text = score.ToString();
-
-        highScoreText.text = "BEST: " + highScore;
-        currentScore.text = "Current Score: " + score;
     }
 
-
+   
     void CalibrateAccelerometer()
     {
         Vector3 accelerationSnapshot = Input.acceleration;
@@ -52,7 +49,7 @@ public class PlayerController : MonoBehaviour
         Vector3 fixedAcceleration = calibrationQuaternion * acceleration;
         return fixedAcceleration;
     }
-
+    
     private void FixedUpdate()
     {
         Vector2 direction = touchPad.GetDirection();
@@ -67,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = movement * speed;
         }
+        rb.rotation = Quaternion.Euler(0f, 0.0f, rb.velocity.x * tilt);
     }
 
    
@@ -75,8 +73,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(ship);
-            
 
+            
             GameOverPanel.SetActive(true);
             isGameOver = true;
             
@@ -88,6 +86,9 @@ public class PlayerController : MonoBehaviour
                 PlayerPrefs.SetInt("HighScore", highScore);
                 PlayerPrefs.Save();
             }
+
+            highScoreText.text = "BEST: " + highScore;
+            currentScore.text = "SCORE: " + score;
         }
     }
 
