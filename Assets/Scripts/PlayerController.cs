@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public GameObject ship;
     private bool isGameOver;
 
+    public Animator animatorRed;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -67,12 +69,21 @@ public class PlayerController : MonoBehaviour
         rb.rotation = Quaternion.Euler(0f, 0.0f, rb.velocity.x * tilt);
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "trigger")
+        {
+            Debug.Log("door is activated");
+            animatorRed.SetTrigger("opendoor");
+        }
+       
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(ship);
+            Debug.Log(collision.gameObject.name);
 
             
             GameOverPanel.SetActive(true);

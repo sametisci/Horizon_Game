@@ -52,7 +52,7 @@ namespace UltimateCameraController.Cameras.Controllers
 			//We do an error check
 			if (targetObject == null)
 			{
-				Debug.LogError("Target Object is not assigned. Please assign a target object in the inspector.");
+				//Debug.LogError("Target Object is not assigned. Please assign a target object in the inspector.");
 				return;
 			}
 			
