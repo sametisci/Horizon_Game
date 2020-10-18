@@ -21,11 +21,11 @@ namespace UltimateCameraController.Cameras.Controllers
 		 
 		 [SerializeField] 
 		 [Tooltip("Maximum Zoom Value")]
-		 private float zoomMax; //Maximum Zoom Value
+		 private float zoomMax= 0; //Maximum Zoom Value
 		 
 		 [SerializeField] 
 		 [Tooltip("Minimum Zoom Value")]
-		 private float zoomMin; //Minimum Zoom Value
+		 private float zoomMin = 0; //Minimum Zoom Value
 	 
 		 [Space(10)]
 		 

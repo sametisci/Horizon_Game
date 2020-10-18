@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion calibrationQuaternion;
     public SimpleTouchPad touchPad;
     public Text distanceText, gameOverText,highScoreText,currentScore;
-    public GameObject GameOverPanel;
+    public GameObject GameOverPanel, finishPanel;
     public GameObject ship;
     private bool isGameOver;
 
@@ -76,7 +76,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("door is activated");
             animatorRed.SetTrigger("opendoor");
         }
-       
+
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            isGameOver = true;
+            finishPanel.SetActive(true);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {

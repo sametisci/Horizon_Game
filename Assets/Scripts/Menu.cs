@@ -7,15 +7,24 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public Text highScoreText;
+ 
     public void Restart()
     {
         SceneManager.LoadScene("SampleScene");
         
     }
 
-    private void Update()
+    
+    public void QuitGame()
     {
-        //highScoreText.text = "BEST: " + PlayerController.highScore;
+        Application.Quit();
+        Debug.Log("Quit Game");
+
+    }
+  
+ 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
